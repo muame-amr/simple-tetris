@@ -1,0 +1,96 @@
+:root {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	color-scheme: light dark;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	background: linear-gradient(0deg, #6139a5 0%, #4570df 100%);
+	margin: 0;
+	padding: 0;
+	display: flex;
+	/* height: 100vh; */
+	justify-content: center;
+	align-items: center;
+	min-width: 320px;
+	min-height: 100vh;
+}
+
+.logo {
+	display: block;
+	margin: 0 auto 20px;
+}
+
+.logo:hover {
+	filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+#game_board {
+	width: 240px;
+	height: 480px;
+	border: 5px solid #3e5eba;
+	margin: 0 auto;
+	position: relative;
+	background: repeating-linear-gradient(
+			rgba(22, 28, 67, 0.8),
+			rgba(22, 28, 67, 0.8) 20px,
+			rgba(23, 27, 63, 0.8) 20px,
+			rgba(23, 27, 63, 0.8) 40px
+		),
+		repeating-linear-gradient(
+			90deg,
+			rgba(22, 28, 67, 0.8),
+			rgba(22, 28, 67, 0.8) 20px,
+			rgba(23, 27, 63, 0.8) 20px,
+			rgba(23, 27, 63, 0.8) 40px
+		);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.block {
+	width: 24px;
+	height: 24px;
+	border: 1px solid black;
+	position: absolute;
+	box-shadow: inset 3px 3px 0 rgba(255, 255, 255, 0.5);
+}
+
+.ghost {
+	width: 24px;
+	height: 24px;
+	border: 1px solid black;
+	position: absolute;
+	box-shadow: inset 3px 3px 0 rgba(255, 255, 255, 0.3);
+}
+
+a {
+	font-weight: 500;
+	color: #646cff;
+	text-decoration: inherit;
+}
+
+a:hover {
+	color: #535bf2;
+}
+
+h1 {
+	font-size: 3.2em;
+	line-height: 1.1;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		color: #213547;
+		background-color: #ffffff;
+	}
+	a:hover {
+		color: #747bff;
+	}
+	button {
+		background-color: #f9f9f9;
+	}
+}
