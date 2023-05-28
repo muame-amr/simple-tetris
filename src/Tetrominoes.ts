@@ -18,21 +18,21 @@ export const Tetrominoes: any = [
 			[0, 3, 3],
 			[3, 3, 0],
 		],
-		color: "#orange",
+		color: "orange",
 	},
 	{
 		shape: [
 			[4, 4, 0],
 			[0, 4, 4],
 		],
-		color: "#red",
+		color: "red",
 	},
 	{
 		shape: [
 			[5, 0, 0],
 			[5, 5, 5],
 		],
-		color: "#green",
+		color: "green",
 	},
 	{
 		shape: [
@@ -42,7 +42,7 @@ export const Tetrominoes: any = [
 		color: "#ff6400",
 	},
 	{
-		shape: [[[7, 7, 7, 7]]],
-		color: "##00b5ff",
+		shape: [[7, 7, 7, 7]],
+		color: "#00b5ff",
 	},
 ];
