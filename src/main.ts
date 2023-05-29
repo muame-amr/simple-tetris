@@ -1,5 +1,6 @@
 import "./style.css";
 import { Tetrominoes } from "./Tetrominoes";
+import { Tetromino } from "./interfaces";
 
 /**
  * Game Config / Parameters
@@ -42,8 +43,8 @@ const randomizeTetromino = () => {
 	};
 };
 
-let currTetromino = randomizeTetromino();
-let currGhostTetromino: { shape: any; row: any; col: any };
+let currTetromino: Tetromino = randomizeTetromino();
+let currGhostTetromino: Tetromino;
 
 const drawTetromino = () => {
 	let { shape, color, row, col } = { ...currTetromino };
@@ -80,12 +81,16 @@ const eraseTetromino = () => {
 	}
 };
 
-const canTetrominoMove = (rowOffset: any, colOffset: any) => {
-	for (let i = 0; i < currTetromino.shape.length; i++) {
-		for (let j = 0; j < currTetromino.shape[i].length; j++) {
-			if (currTetromino.shape[i][j]) {
-				let row = currTetromino.row + i + rowOffset;
-				let col = currTetromino.col + j + colOffset;
+const canTetrominoMove = (
+	tetrominoes: Tetromino,
+	rowOffset: any,
+	colOffset: any
+) => {
+	for (let i = 0; i < tetrominoes.shape.length; i++) {
+		for (let j = 0; j < tetrominoes.shape[i].length; j++) {
+			if (tetrominoes.shape[i][j]) {
+				let row = tetrominoes.row + i + rowOffset;
+				let col = tetrominoes.col + j + colOffset;
 
 				if (
 					row >= BOARD_HEIGHT ||
@@ -213,7 +218,7 @@ const moveTetromino = (direction: string) => {
 
 	switch (direction) {
 		case "left": {
-			if (canTetrominoMove(0, -1)) {
+			if (canTetrominoMove(currTetromino, 0, -1)) {
 				eraseTetromino();
 				col -= 1;
 				currTetromino.col = col;
@@ -223,7 +228,7 @@ const moveTetromino = (direction: string) => {
 			break;
 		}
 		case "right": {
-			if (canTetrominoMove(0, 1)) {
+			if (canTetrominoMove(currTetromino, 0, 1)) {
 				eraseTetromino();
 				col += 1;
 				currTetromino.col = col;
@@ -233,7 +238,7 @@ const moveTetromino = (direction: string) => {
 			break;
 		}
 		default: {
-			if (canTetrominoMove(1, 0)) {
+			if (canTetrominoMove(currTetromino, 1, 0)) {
 				eraseTetromino();
 				row++;
 				currTetromino.col = col;
@@ -280,32 +285,11 @@ const eraseGhostTetromino = () => {
 	}
 };
 
-const canGhostTetromino = (rowOffset: any, colOffset: any) => {
-	for (let i = 0; i < currGhostTetromino.shape.length; i++) {
-		for (let j = 0; j < currGhostTetromino.shape[i].length; j++) {
-			if (currGhostTetromino.shape[i][j] !== 0) {
-				let row = currGhostTetromino.row + i + rowOffset;
-				let col = currGhostTetromino.col + j + colOffset;
-
-				if (
-					row >= BOARD_HEIGHT ||
-					col < 0 ||
-					col >= BOARD_WIDTH ||
-					(row >= 0 && board[row][col] !== 0)
-				)
-					return false;
-			}
-		}
-	}
-
-	return true;
-};
-
 const moveGhostTetromino = () => {
 	eraseGhostTetromino();
 	currGhostTetromino = { ...currTetromino };
 
-	while (canGhostTetromino(1, 0)) {
+	while (canTetrominoMove(currGhostTetromino, 1, 0)) {
 		currGhostTetromino.row++;
 	}
 
@@ -325,7 +309,7 @@ const dropTetromino = () => {
 	drop.muted = false;
 	drop.play();
 
-	while (canTetrominoMove(1, 0)) {
+	while (canTetrominoMove(currTetromino, 1, 0)) {
 		eraseTetromino();
 		row++;
 		currTetromino.col = col;

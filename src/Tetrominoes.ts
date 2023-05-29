@@ -1,4 +1,6 @@
-export const Tetrominoes: any = [
+import { Tetromino } from "./interfaces";
+
+export const Tetrominoes: Tetromino[] = [
 	{
 		shape: [
 			[1, 1],

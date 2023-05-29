@@ -6,8 +6,6 @@ Using [Cozy Coding](https://www.youtube.com/watch?v=iPNHzU7b2YQ&list=WL&index=6)
 
 TO-DO:
 
-- Code Refactor (redundant function)
-- Add interfaces
 - Add game over
 - Add difficulty
 - Change color theme
